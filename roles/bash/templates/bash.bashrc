@@ -45,7 +45,7 @@ my_prompt() {
         PS1="(${GREEN}"
     fi
 
-    PS1="${PS1}${exit_code}${RESET}) ${YELLOW}\H${RESET} [${BLUE}\w${RESET}]"
+    PS1="${PS1}${exit_code}${RESET}) ${YELLOW}$(hostname -f)${RESET} [${BLUE}\w${RESET}]"
 
     if [[ ! -z $GIT_BRANCH ]]; then
         PS1="${PS1} (${CYAN}${GIT_BRANCH}${RESET})"
@@ -121,7 +121,17 @@ alias {{ item[0] }}={{ item[1] | quote }}
 # end local aliases
 {% endif %}
 
-# bash-completion
+# func will show all defined shell function names (similar to alias)
+{% if bash_zsh %}
+alias func="print -l ${(ok)functions[(I)[^_]*]}"
+{% else %}
+alias func="declare -F | grep -v 'declare -f _' | awk '{print \$3}'"
+{% endif %}
+
+# tab-completion
+{% if bash_zsh %}
+autoload -Uz compinit && compinit
+{% else %}
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -129,6 +139,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+{% endif %}
 
 {% if bash_sources | length > 0 %}
 # begin source imports
@@ -136,6 +147,7 @@ fi
 source {{ item }}
     {%- endfor %}
 # end source imports
+
 {% endif %}
 # User specific aliases and functions
 if [ -d ~/{{ bash_rc_file }}.d ]; then

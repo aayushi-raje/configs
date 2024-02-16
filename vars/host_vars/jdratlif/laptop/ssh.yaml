@@ -1,20 +1,29 @@
 ---
 ssh_host_configs:
+  jdratlif-dev8.grnoc.iu.edu:
+    RemoteForward:
+      - '*:8080 localhost:8080'
+      - '*:8081 localhost:8081'
   xaiver:
     Hostname: xaiver.technoplaza.net
     Port: 5122
-    LocalForward: 13389 192.168.1.6:3389
+    LocalForward:
+      - 13389 192.168.1.6:3389
+      - 3128 192.168.1.4:3128
+      - 8006 192.168.1.4:8006
 
 ssh_vscode_hosts:
-  jdratlif-dev7.grnoc.iu.edu:
-    port: 10001
+  jdratlif-dev8.grnoc.iu.edu:
+    Port: 10001
   awx.grnoc.iu.edu:
     port: 10002
-  puppet7.grnoc.iu.edu:
+  puppet.grnoc.iu.edu:
     port: 10003
+  puppet7.grnoc.iu.edu:
+    port: 10004
   awx.bldc.nwave.noaa.gov:
     port: 20001
-  puppet7.bldc.nwave.noaa.gov:
+  puppet.nwave.noaa.gov:
     port: 20002
-  cobbler.bldc.nwave.noaa.gov:
+  puppet7.bldc.nwave.noaa.gov:
     port: 20003

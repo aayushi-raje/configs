@@ -21,14 +21,23 @@ vpn_hosts:
 
   # AWX hosts
   - awx.grnoc.iu.edu
+  - awx.test-net.grnoc.iu.edu
   - awx.bldc.nwave.noaa.gov
   - awx.ctc.nwave.noaa.gov
 
   # Cobbler
   - build.grnoc.iu.edu
+  - cobbler33.grnoc.iu.edu
 
   # GHE
   - github.nwave.noaa.gov
+
+  # Kubernetes
+  - vrrp.k3s.grnoc.iu.edu
+
+  # IU IPAM
+  - ipam-bl.uits.iu.edu
+  - ipam-test-bl.uits.iu.edu
 
   # MCNC
   - db.ncren.net
