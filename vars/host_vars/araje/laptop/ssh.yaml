@@ -1,5 +1,11 @@
+ssh_host_configs:
+  araje-oel8.grnoc.iu.edu:
+    RemoteForward:
+      - '*:8080 localhost:8080'
+
 ssh_vscode_hosts:
   araje-dev.grnoc.iu.edu:
+  araje-oel8.grnoc.iu.edu:
   awx.grnoc.iu.edu:
   puppet7.grnoc.iu.edu:
   build-new.grnoc.iu.edu:
